@@ -4,5 +4,5 @@
 TEST(bncsutil, version) {
     char buf[BUFSIZ];
     bncsutil_getVersionString(buf);
-    std::cout << buf;
+    ASSERT_STREQ(buf, "1.4.1");
 }
