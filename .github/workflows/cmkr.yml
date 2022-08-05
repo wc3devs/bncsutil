@@ -1,6 +1,9 @@
 name: CMake
 
-on: [ push ]
+on:
+  push:
+    branches:
+      - feature/*
 
 env:
   BUILD_TYPE: Release
