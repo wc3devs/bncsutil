@@ -9,7 +9,13 @@ languages = ["C", "CXX"]
 
 [vcpkg]
 version = "2022.07.25"
-packages = ["mpir"]
+packages = [
+    "mpir",
+    "gtest",
+]
+
+[find-package]
+GTest = {}
 
 [target.bncsutil]
 type = "static"
@@ -22,6 +28,19 @@ include-directories = [
 ]
 include-before = ["cmake/mpir.cmake"]
 link-libraries = ["mpir"]
+
+[target.bncsutil-test]
+type = "executable"
+sources = [
+    "test/*.cpp",
+]
+link-libraries = [
+    "bncsutil",
+    "GTest::gmock",
+    "GTest::gtest",
+    "GTest::gmock_main",
+    "GTest::gtest_main",
+]
 
 [[install]]
 targets = ["bncsutil"]
