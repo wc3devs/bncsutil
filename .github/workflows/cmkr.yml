@@ -21,7 +21,7 @@ jobs:
         run: |
           sudo apt-get install -y yasm texinfo
 
-      - name: Caching build folder
+      - name: Caching vcpkg deps
         uses: actions/cache@v3
         with:
           path: |
@@ -36,6 +36,10 @@ jobs:
           cmake -B build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
           cmake --build build --config ${{ env.BUILD_TYPE }} --parallel
           cmake --install build --prefix ./install --config ${{ env.BUILD_TYPE }}
+
+      - name: Test
+        run: |
+          ./bncsutil-test
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
