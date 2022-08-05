@@ -1,0 +1,54 @@
+[cmake]
+version = "3.20.2"
+cmkr-include = "cmake/cmkr.cmake"
+
+[project]
+name = "bncsutil"
+version = "${WORKFLOW_PROVIDED_VERSION}"
+languages = ["C", "CXX"]
+include-after = [
+    "cmake/generate.cmake",
+]
+
+[vcpkg]
+version = "2022.07.25"
+packages = [
+    "mpir",
+    "gtest",
+]
+
+[find-package]
+GTest = {}
+
+[target.bncsutil]
+type = "static"
+sources = [
+    "src/*.cpp",
+    "src/*.c",
+    "cmake/libinfo.h.in",
+]
+include-directories = [
+    "include",
+]
+include-before = ["cmake/mpir.cmake"]
+link-libraries = ["mpir"]
+cmake-after = """
+generate_resources(${CMKR_TARGET})
+"""
+
+[target.bncsutil-test]
+type = "executable"
+sources = [
+    "test/*.cpp",
+]
+link-libraries = [
+    "bncsutil",
+    "GTest::gmock",
+    "GTest::gtest",
+    "GTest::gmock_main",
+    "GTest::gtest_main",
+]
+
+[[install]]
+targets = ["bncsutil"]
+destination = "bin"
