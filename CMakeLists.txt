@@ -23,7 +23,13 @@ if(CMKR_ROOT_PROJECT)
 	configure_file(cmake.toml cmake.toml COPYONLY)
 endif()
 
-project(bncsutil)
+project(bncsutil
+	LANGUAGES
+		C
+		CXX
+	VERSION
+		1.4.1
+)
 
 if(CMKR_ROOT_PROJECT AND NOT CMKR_DISABLE_VCPKG)
 	include(FetchContent)
@@ -33,11 +39,10 @@ if(CMKR_ROOT_PROJECT AND NOT CMKR_DISABLE_VCPKG)
 	include("${vcpkg_SOURCE_DIR}/scripts/buildsystems/vcpkg.cmake")
 endif()
 
-# Packages
-find_package(fmt REQUIRED CONFIG)
-
 # Target bncsutil
 set(CMKR_TARGET bncsutil)
+include("cmake/mpir.cmake")
+
 set(bncsutil_SOURCES "")
 
 list(APPEND bncsutil_SOURCES
@@ -59,7 +64,7 @@ list(APPEND bncsutil_SOURCES
 )
 
 set(CMKR_SOURCES ${bncsutil_SOURCES})
-add_library(bncsutil)
+add_library(bncsutil STATIC)
 
 if(bncsutil_SOURCES)
 	target_sources(bncsutil PRIVATE ${bncsutil_SOURCES})
@@ -72,11 +77,8 @@ target_include_directories(bncsutil PUBLIC
 )
 
 target_link_libraries(bncsutil PUBLIC
-	fmt::fmt
 	mpir
 )
-
-
 
 unset(CMKR_TARGET)
 unset(CMKR_SOURCES)
