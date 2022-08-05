@@ -30,6 +30,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define USE_MPIR 1
+
 #if (defined(USE_MPIR) && USE_MPIR)
 #include "mpir.h"
 #else
