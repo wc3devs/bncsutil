@@ -33,8 +33,7 @@ extern "C" {
 // Library Version
 // Defined as follows, for library version a.b.c:
 // (a * 10^4) + (b * 10^2) + c
-// Version 1.2.0:
-#define BNCSUTIL_VERSION  10300
+#define BNCSUTIL_VERSION  @PROJECT_VERSION_MAJOR@0@PROJECT_VERSION_MINOR@0@PROJECT_VERSION_PATCH@
 
 // Get Version
 MEXP(unsigned long) bncsutil_getVersion();
