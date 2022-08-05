@@ -48,7 +48,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs:
       - release
-    if: job.release.outputs.new_release_published
+    if: needs.release.outputs.new_release_published
 
     steps:
       - uses: actions/checkout@v2
@@ -70,7 +70,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -B build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DWORKFLOW_PROVIDED_VERSION=${{ job.release.outputs.new_release_version }}
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DWORKFLOW_PROVIDED_VERSION=${{ needs.release.outputs.new_release_version }}
           cmake --build build --config ${{ env.BUILD_TYPE }} --parallel
           cmake --install build --prefix ./install --config ${{ env.BUILD_TYPE }}
 
