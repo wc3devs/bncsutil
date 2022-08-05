@@ -3,6 +3,10 @@
 
 cmake_minimum_required(VERSION 3.20.2)
 
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
+	message(FATAL_ERROR "In-tree builds are not supported. Run CMake from a separate directory: cmake -B build")
+endif()
+
 # Regenerate CMakeLists.txt automatically in the root project
 set(CMKR_ROOT_PROJECT OFF)
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
@@ -33,11 +37,17 @@ project(bncsutil
 
 if(CMKR_ROOT_PROJECT AND NOT CMKR_DISABLE_VCPKG)
 	include(FetchContent)
-	message(STATUS "Fetching vcpkg...")
+	message(STATUS "Fetching vcpkg (2022.07.25)...")
 	FetchContent_Declare(vcpkg URL "https://github.com/microsoft/vcpkg/archive/refs/tags/2022.07.25.tar.gz")
-	FetchContent_MakeAvailable(vcpkg)
-	include("${vcpkg_SOURCE_DIR}/scripts/buildsystems/vcpkg.cmake")
+	FetchContent_GetProperties(vcpkg)
+	if(NOT vcpkg_POPULATED)
+		FetchContent_Populate(vcpkg)
+		include("${vcpkg_SOURCE_DIR}/scripts/buildsystems/vcpkg.cmake")
+	endif()
 endif()
+
+# Packages
+find_package(GTest REQUIRED)
 
 # Target bncsutil
 set(CMKR_TARGET bncsutil)
@@ -78,6 +88,43 @@ target_include_directories(bncsutil PUBLIC
 
 target_link_libraries(bncsutil PUBLIC
 	mpir
+)
+
+unset(CMKR_TARGET)
+unset(CMKR_SOURCES)
+
+# Target bncsutil-test
+set(CMKR_TARGET bncsutil-test)
+set(bncsutil-test_SOURCES "")
+
+list(APPEND bncsutil-test_SOURCES
+	"test/main.cpp"
+)
+
+list(APPEND bncsutil-test_SOURCES
+	cmake.toml
+)
+
+set(CMKR_SOURCES ${bncsutil-test_SOURCES})
+add_executable(bncsutil-test)
+
+if(bncsutil-test_SOURCES)
+	target_sources(bncsutil-test PRIVATE ${bncsutil-test_SOURCES})
+endif()
+
+get_directory_property(CMKR_VS_STARTUP_PROJECT DIRECTORY ${PROJECT_SOURCE_DIR} DEFINITION VS_STARTUP_PROJECT)
+if(NOT CMKR_VS_STARTUP_PROJECT)
+	set_property(DIRECTORY ${PROJECT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT bncsutil-test)
+endif()
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${bncsutil-test_SOURCES})
+
+target_link_libraries(bncsutil-test PRIVATE
+	bncsutil
+	GTest::gmock
+	GTest::gtest
+	GTest::gmock_main
+	GTest::gtest_main
 )
 
 unset(CMKR_TARGET)
