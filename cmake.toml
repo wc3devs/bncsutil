@@ -4,8 +4,11 @@ cmkr-include = "cmake/cmkr.cmake"
 
 [project]
 name = "bncsutil"
-version = "1.4.1"
+version = "${WORKFLOW_PROVIDED_VERSION}"
 languages = ["C", "CXX"]
+include-after = [
+    "cmake/generate.cmake",
+]
 
 [vcpkg]
 version = "2022.07.25"
@@ -22,12 +25,16 @@ type = "static"
 sources = [
     "src/*.cpp",
     "src/*.c",
+    "cmake/libinfo.h.in",
 ]
 include-directories = [
     "include",
 ]
 include-before = ["cmake/mpir.cmake"]
 link-libraries = ["mpir"]
+cmake-after = """
+generate_resources(${CMKR_TARGET})
+"""
 
 [target.bncsutil-test]
 type = "executable"
