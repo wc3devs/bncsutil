@@ -26,6 +26,7 @@ jobs:
           fetch-depth: 0
 
       - name: Release
+        id: release
         uses: cycjimmy/semantic-release-action@v2
         with:
           semantic_version: 19.0.2
@@ -35,3 +36,71 @@ jobs:
             conventional-changelog-conventionalcommits@4.6.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
+    needs:
+      - release
+    if: steps.release.new_release_published
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install -y yasm texinfo
+
+      - name: Caching vcpkg deps
+        uses: actions/cache@v3
+        with:
+          path: |
+            build/_deps
+            build/vcpkg_installed
+          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
+          restore-keys: |
+            ${{ runner.os }}-vcpkg-
+
+      - name: Build
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DWORKFLOW_PROVIDED_VERSION=${{ steps.release.new_release_version }}
+          cmake --build build --config ${{ env.BUILD_TYPE }} --parallel
+          cmake --install build --prefix ./install --config ${{ env.BUILD_TYPE }}
+
+      - name: Test
+        run: |
+          ./bncsutil-test
+        working-directory: build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}
+          path: install/bin/*
+
+  upload:
+    name: Upload release artifacts
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+    needs:
+      - build
+    steps:
+      - name: Download build artefacts
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}
+          path: install/bin/
+
+      - name: Upload release assets
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: './install/bin/*'
