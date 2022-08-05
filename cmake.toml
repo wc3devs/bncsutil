@@ -1,0 +1,28 @@
+[cmake]
+version = "3.20.2"
+cmkr-include = "cmake/cmkr.cmake"
+
+[project]
+name = "bncsutil"
+
+[vcpkg]
+version = "2022.07.25"
+packages = ["fmt", "mpir"]
+
+[find-package]
+fmt = { version = "*" }
+
+[target.bncsutil]
+type = "library"
+sources = [
+    "src/*.cpp",
+    "src/*.c",
+]
+include-directories = [
+    "include",
+]
+link-libraries = ["fmt::fmt", "mpir"]
+
+[[install]]
+targets = ["bncsutil"]
+destination = "bin"
