@@ -21,6 +21,7 @@
 *.vi
 *.vim
 *.zip
+.idea
 .DS_Store
 .Spotlight-V100
 .Trashes
