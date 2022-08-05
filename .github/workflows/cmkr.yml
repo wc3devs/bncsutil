@@ -1,6 +1,6 @@
 name: CMake
 
-on: [push]
+on: [ push ]
 
 env:
   BUILD_TYPE: Release
@@ -14,21 +14,21 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Install dependencies
-      if: ${matrix.os} == 'ubuntu-latest'
-      run: |
-        sudo apt-get install -y yasm texinfo
+      - name: Install dependencies
+        if: ${{ matrix.os }} == 'ubuntu-latest'
+        run: |
+          sudo apt-get install -y yasm texinfo
 
-    - name: Build
-      run: |
-        cmake -B build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
-        cmake --build build --config ${{ env.BUILD_TYPE }} --parallel
-        cmake --install build --prefix ./install --config ${{ env.BUILD_TYPE }}
+      - name: Build
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
+          cmake --build build --config ${{ env.BUILD_TYPE }} --parallel
+          cmake --install build --prefix ./install --config ${{ env.BUILD_TYPE }}
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ github.event.repository.name }}-${{ matrix.os }}
-        path: install/bin/*
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}
+          path: install/bin/*
