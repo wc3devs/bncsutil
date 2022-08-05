@@ -32,8 +32,10 @@ project(bncsutil
 		C
 		CXX
 	VERSION
-		1.4.1
+		${WORKFLOW_PROVIDED_VERSION}
 )
+
+include("cmake/generate.cmake")
 
 if(CMKR_ROOT_PROJECT AND NOT CMKR_DISABLE_VCPKG)
 	include(FetchContent)
@@ -67,6 +69,7 @@ list(APPEND bncsutil_SOURCES
 	"src/pe.c"
 	"src/sha1.c"
 	"src/stack.c"
+	"cmake/libinfo.h.in"
 )
 
 list(APPEND bncsutil_SOURCES
@@ -89,6 +92,8 @@ target_include_directories(bncsutil PUBLIC
 target_link_libraries(bncsutil PUBLIC
 	mpir
 )
+
+generate_resources(${CMKR_TARGET})
 
 unset(CMKR_TARGET)
 unset(CMKR_SOURCES)
