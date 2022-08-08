@@ -139,7 +139,7 @@ install(
 	TARGETS
 		bncsutil
 	DESTINATION
-		bin
+		lib
 	COMPONENT
 		bncsutil
 )

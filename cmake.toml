@@ -51,4 +51,4 @@ link-libraries = [
 
 [[install]]
 targets = ["bncsutil"]
-destination = "bin"
+destination = "lib"
