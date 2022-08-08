@@ -44,6 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest ]
+        release: [ Release ]
     runs-on: ${{ matrix.os }}
     needs:
       - release
@@ -69,18 +70,45 @@ jobs:
 
       - name: Build
         run: |
-          cmake -B build -DCMAKE_BUILD_TYPE=Release -DWORKFLOW_PROVIDED_VERSION=${{ needs.release.outputs.new_release_version }}
-          cmake --build build --config ${{ env.BUILD_TYPE }} --parallel
-          cmake --install build --prefix ./install --config ${{ env.BUILD_TYPE }}
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.release }} -DWORKFLOW_PROVIDED_VERSION=${{ needs.release.outputs.new_release_version }}
+          cmake --build build --config ${{ matrix.release }} --parallel
+          cmake --install build --prefix ./install --config ${{ matrix.release }}
 
       - name: Test
         run: |
           ./bncsutil-test
         working-directory: build
 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}
+          path: install/lib/*
+
+  upload:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+        release: [ Release ]
+    needs: build
+    steps:
+      - name: Download build artefacts
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}
+          path: install/lib/
+
+      - name: Create release archive
+        run: |
+          mkdir release
+          zip -uj release/${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}.zip install/*
+          zip -uj release/${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}.zip include/*
+
       - name: Upload release assets
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: './install/bin/*'
+          args: './release/*'
