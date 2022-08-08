@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.8](https://github.com/wc3devs/bncsutil/compare/v1.1.7...v1.1.8) (2022-08-08)
+
+
+### Bug Fixes
+
+* **workflow:** add checkout step ([3970c52](https://github.com/wc3devs/bncsutil/commit/3970c529d56c0a5ef36c234a8abbe0375096039a))
+* **workflow:** zip creation assets ([dc536f8](https://github.com/wc3devs/bncsutil/commit/dc536f88faa128db22e5c7491149f69bdaafd4d2))
+
 ### [1.1.7](https://github.com/wc3devs/bncsutil/compare/v1.1.6...v1.1.7) (2022-08-08)
 
 
