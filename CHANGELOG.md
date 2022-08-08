@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.14](https://github.com/wc3devs/bncsutil/compare/v1.1.13...v1.1.14) (2022-08-08)
+
+
+### Bug Fixes
+
+* **workflow:** remove unused release trigger types ([a6c1bce](https://github.com/wc3devs/bncsutil/commit/a6c1bce7a18bbf0f215f42d795ed52f472dff988))
+
 ### [1.1.13](https://github.com/wc3devs/bncsutil/compare/v1.1.12...v1.1.13) (2022-08-08)
 
 
