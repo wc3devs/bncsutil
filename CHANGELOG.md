@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.2](https://github.com/wc3devs/bncsutil/compare/v1.1.1...v1.1.2) (2022-08-08)
+
+
+### Bug Fixes
+
+* **workflow:** replace upload job with build job ([20efa02](https://github.com/wc3devs/bncsutil/commit/20efa021350722d1d8acd5e5c79339007bc9cc8e))
+
 ### [1.1.1](https://github.com/wc3devs/bncsutil/compare/v1.1.0...v1.1.1) (2022-08-06)
 
 
