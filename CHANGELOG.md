@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.12](https://github.com/wc3devs/bncsutil/compare/v1.1.11...v1.1.12) (2022-08-08)
+
+
+### Bug Fixes
+
+* **workflow:** release assets scope ([165c6f5](https://github.com/wc3devs/bncsutil/commit/165c6f5a28ebc715f6885dfe04b83e6ed2fc57c9))
+
 ### [1.1.11](https://github.com/wc3devs/bncsutil/compare/v1.1.10...v1.1.11) (2022-08-08)
 
 
