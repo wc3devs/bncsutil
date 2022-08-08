@@ -32,7 +32,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v3
         id: semantic
         with:
-          extends: |
+          extra_plugins: |
             @semantic-release/changelog@6.0.0
             @semantic-release/git@10.0.0
             conventional-changelog-conventionalcommits@4.6.3
@@ -52,11 +52,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Debug
-        run: |
-          echo ${{ needs.release.outputs.new_release_published }}
-          echo ${{ needs.release.outputs.new_release_version }}
-
       - name: Install dependencies
         if: matrix.os == 'ubuntu-latest'
         run: |
@@ -74,7 +69,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -B build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DWORKFLOW_PROVIDED_VERSION=${{ needs.release.outputs.new_release_version }}
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -DWORKFLOW_PROVIDED_VERSION=${{ needs.release.outputs.new_release_version }}
           cmake --build build --config ${{ env.BUILD_TYPE }} --parallel
           cmake --install build --prefix ./install --config ${{ env.BUILD_TYPE }}
 
