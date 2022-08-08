@@ -100,8 +100,7 @@ jobs:
       - name: Create release archive
         run: |
           mkdir release
-          zip -uj release/${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}.zip install/*
-          zip -uj release/${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}.zip include/*
+          zip -r release/${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}.zip include install/lib
 
       - name: Upload release assets
         uses: skx/github-action-publish-binaries@master
