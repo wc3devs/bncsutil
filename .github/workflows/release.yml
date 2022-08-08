@@ -74,11 +74,6 @@ jobs:
           cmake --build build --config ${{ matrix.release }} --parallel
           cmake --install build --prefix ./install --config ${{ matrix.release }}
 
-      - name: Test
-        run: |
-          ./bncsutil-test
-        working-directory: build
-
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -94,6 +89,8 @@ jobs:
         release: [ Release ]
     needs: build
     steps:
+      - uses: actions/checkout@v2
+
       - name: Download build artefacts
         uses: actions/download-artifact@v1
         with:
