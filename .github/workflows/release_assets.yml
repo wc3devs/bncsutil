@@ -1,0 +1,76 @@
+name: Release assets uploader
+
+on:
+  release:
+    types:
+      - created
+      - edited
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+        release: [ Release ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install -y yasm texinfo
+
+      - name: Caching vcpkg deps
+        uses: actions/cache@v3
+        with:
+          path: |
+            build/_deps
+            build/vcpkg_installed
+          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
+          restore-keys: |
+            ${{ runner.os }}-vcpkg-
+
+      - name: Build
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.release }} -DWORKFLOW_PROVIDED_VERSION=${{ github.ref_name }}
+          cmake --build build --config ${{ matrix.release }} --parallel
+          cmake --install build --prefix ./install --config ${{ matrix.release }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}
+          path: install/lib/*
+
+  upload:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+        release: [ Release ]
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download build artefacts
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}
+          path: install/lib/
+
+      - name: Create release archive
+        run: |
+          mkdir release
+          zip -r release/${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}.zip include install/lib
+
+      - name: Upload release assets
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: './release/*'
