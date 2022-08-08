@@ -27,18 +27,17 @@ jobs:
 
       - name: Release
         id: release
-        uses: cycjimmy/semantic-release-action@v2
+        uses: cycjimmy/semantic-release-action@v3
         with:
-          semantic_version: 19.0.2
-          extra_plugins: |
+          extends: |
             @semantic-release/changelog@6.0.0
             @semantic-release/git@10.0.0
             conventional-changelog-conventionalcommits@4.6.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
-      new_version: ${{ steps.release.new_release_published }}
-      new_release_version: ${{ steps.release.new_release_version }}
+      new_version: ${{ steps.release.outputs.new_release_published }}
+      new_release_version: ${{ steps.release.outputs.new_release_version }}
 
   build:
     strategy:
@@ -48,6 +47,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs:
       - release
+    if: needs.release.outputs.new_release_published == 'true'
 
     steps:
       - uses: actions/checkout@v2
