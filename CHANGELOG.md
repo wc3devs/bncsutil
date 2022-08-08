@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.13](https://github.com/wc3devs/bncsutil/compare/v1.1.12...v1.1.13) (2022-08-08)
+
+
+### Bug Fixes
+
+* **workflow:** add release PAT token ([8294552](https://github.com/wc3devs/bncsutil/commit/82945522d7e09655144daa270f71626a01029fee))
+* **workflow:** release assets scope ([8696d75](https://github.com/wc3devs/bncsutil/commit/8696d757e0177208993a2a5d35dc5eca6a67bfc2))
+
 ### [1.1.12](https://github.com/wc3devs/bncsutil/compare/v1.1.11...v1.1.12) (2022-08-08)
 
 
