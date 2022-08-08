@@ -69,9 +69,7 @@ CDKeyDecoder::CDKeyDecoder() {
     keyHash = (char*) 0;
 }
 
-CDKeyDecoder::CDKeyDecoder(const char* cd_key) {
-    CDKeyDecoder(cd_key, std::strlen(cd_key));
-}
+CDKeyDecoder::CDKeyDecoder(const char* cd_key) : CDKeyDecoder(cd_key, std::strlen(cd_key)) {}
 
 /**
  * Creates a new CD-key decoder object, using the specified key.
