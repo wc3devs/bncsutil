@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.3](https://github.com/wc3devs/bncsutil/compare/v1.1.2...v1.1.3) (2022-08-08)
+
+
+### Bug Fixes
+
+* **workflow:** release workflow outputs & debug ([dff4127](https://github.com/wc3devs/bncsutil/commit/dff4127769d128cbd166869584ac4721b71eeb4a))
+
 ### [1.1.2](https://github.com/wc3devs/bncsutil/compare/v1.1.1...v1.1.2) (2022-08-08)
 
 
