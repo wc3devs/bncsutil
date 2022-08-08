@@ -5,15 +5,13 @@ on:
     branches:
       - feature/*
 
-env:
-  BUILD_TYPE: Release
-
 jobs:
   build:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
+        os: [ ubuntu-latest ]
+        type: [ Debug ]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -36,17 +34,17 @@ jobs:
 
       - name: Build
         run: |
-          cmake -B build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
-          cmake --build build --config ${{ env.BUILD_TYPE }} --parallel
-          cmake --install build --prefix ./install --config ${{ env.BUILD_TYPE }}
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.type }}
+          cmake --build build --config ${{ matrix.type }} --parallel
+          cmake --install build --prefix ./install --config ${{ matrix.type }}
 
       - name: Test
         run: |
-          ./bncsutil-test
+          ./test
         working-directory: build
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ${{ github.event.repository.name }}-${{ matrix.os }}
-          path: install/bin/*
+          path: install/lib/*
