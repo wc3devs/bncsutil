@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.7](https://github.com/wc3devs/bncsutil/compare/v1.1.6...v1.1.7) (2022-08-08)
+
+
+### Bug Fixes
+
+* **cmake:** target destination ([26bff2c](https://github.com/wc3devs/bncsutil/commit/26bff2ccf0db31f51aff4a99407dd71ac4502650))
+* **workflow:** update release assets destination ([9b72e18](https://github.com/wc3devs/bncsutil/commit/9b72e1883412a3a5ca7866167787e14c73037d65))
+
 ### [1.1.6](https://github.com/wc3devs/bncsutil/compare/v1.1.5...v1.1.6) (2022-08-08)
 
 
