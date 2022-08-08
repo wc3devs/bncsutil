@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.6](https://github.com/wc3devs/bncsutil/compare/v1.1.5...v1.1.6) (2022-08-08)
+
+
+### Bug Fixes
+
+* **workflow:** release plugins for semantic release ([369be1c](https://github.com/wc3devs/bncsutil/commit/369be1c3b82d7c2d2f8df7ebeea393452f99d3be))
+
 ### [1.1.3](https://github.com/wc3devs/bncsutil/compare/v1.1.2...v1.1.3) (2022-08-08)
 
 
