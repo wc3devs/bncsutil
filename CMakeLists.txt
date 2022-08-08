@@ -49,7 +49,7 @@ if(CMKR_ROOT_PROJECT AND NOT CMKR_DISABLE_VCPKG)
 endif()
 
 # Packages
-find_package(GTest REQUIRED)
+find_package(doctest REQUIRED)
 
 # Target bncsutil
 set(CMKR_TARGET bncsutil)
@@ -85,6 +85,12 @@ endif()
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${bncsutil_SOURCES})
 
+target_compile_definitions(bncsutil PRIVATE
+	USE_NEW_BSHA1=1
+	DEBUG1=1
+	bncsutil_debug_message_a=printf
+)
+
 target_include_directories(bncsutil PUBLIC
 	include
 )
@@ -98,38 +104,42 @@ generate_resources(${CMKR_TARGET})
 unset(CMKR_TARGET)
 unset(CMKR_SOURCES)
 
-# Target bncsutil-test
-set(CMKR_TARGET bncsutil-test)
-set(bncsutil-test_SOURCES "")
+# Target test
+set(CMKR_TARGET test)
+set(test_SOURCES "")
 
-list(APPEND bncsutil-test_SOURCES
-	"test/main.cpp"
+list(APPEND test_SOURCES
+	"tests/bsha1.cpp"
+	"tests/cdkeydecoder.cpp"
+	"tests/checkrevision.cpp"
+	"tests/decodekey.cpp"
+	"tests/libinfo.cpp"
+	"tests/main.cpp"
+	"tests/nls.cpp"
+	"tests/oldauth.cpp"
 )
 
-list(APPEND bncsutil-test_SOURCES
+list(APPEND test_SOURCES
 	cmake.toml
 )
 
-set(CMKR_SOURCES ${bncsutil-test_SOURCES})
-add_executable(bncsutil-test)
+set(CMKR_SOURCES ${test_SOURCES})
+add_executable(test)
 
-if(bncsutil-test_SOURCES)
-	target_sources(bncsutil-test PRIVATE ${bncsutil-test_SOURCES})
+if(test_SOURCES)
+	target_sources(test PRIVATE ${test_SOURCES})
 endif()
 
 get_directory_property(CMKR_VS_STARTUP_PROJECT DIRECTORY ${PROJECT_SOURCE_DIR} DEFINITION VS_STARTUP_PROJECT)
 if(NOT CMKR_VS_STARTUP_PROJECT)
-	set_property(DIRECTORY ${PROJECT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT bncsutil-test)
+	set_property(DIRECTORY ${PROJECT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT test)
 endif()
 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${bncsutil-test_SOURCES})
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${test_SOURCES})
 
-target_link_libraries(bncsutil-test PRIVATE
+target_link_libraries(test PRIVATE
+	doctest::doctest
 	bncsutil
-	GTest::gmock
-	GTest::gtest
-	GTest::gmock_main
-	GTest::gtest_main
 )
 
 unset(CMKR_TARGET)

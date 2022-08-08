@@ -12,13 +12,10 @@ include-after = [
 
 [vcpkg]
 version = "2022.07.25"
-packages = [
-    "mpir",
-    "gtest",
-]
+packages = ["mpir", "doctest"]
 
 [find-package]
-GTest = {}
+doctest = {}
 
 [target.bncsutil]
 type = "static"
@@ -32,22 +29,19 @@ include-directories = [
 ]
 include-before = ["cmake/mpir.cmake"]
 link-libraries = ["mpir"]
+private-compile-definitions = [
+    "USE_NEW_BSHA1=1",
+    "DEBUG1=1",
+    "bncsutil_debug_message_a=printf",
+]
 cmake-after = """
 generate_resources(${CMKR_TARGET})
 """
 
-[target.bncsutil-test]
+[target.test]
 type = "executable"
-sources = [
-    "test/*.cpp",
-]
-link-libraries = [
-    "bncsutil",
-    "GTest::gmock",
-    "GTest::gtest",
-    "GTest::gmock_main",
-    "GTest::gtest_main",
-]
+sources = ["tests/*.cpp"]
+link-libraries = ["doctest::doctest", "bncsutil"]
 
 [[install]]
 targets = ["bncsutil"]
