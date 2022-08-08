@@ -2,6 +2,11 @@ name: Release assets uploader
 
 on:
   release:
+    types:
+      - created
+      - edited
+      - published
+      - released
   workflow_dispatch:
 
 jobs:
