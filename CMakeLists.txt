@@ -65,6 +65,7 @@ list(APPEND bncsutil_SOURCES
 	"src/file.cpp"
 	"src/libinfo.cpp"
 	"src/oldauth.cpp"
+	"src/debug.c"
 	"src/nls.c"
 	"src/pe.c"
 	"src/sha1.c"
@@ -87,8 +88,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${bncsutil_SOURCES})
 
 target_compile_definitions(bncsutil PRIVATE
 	USE_NEW_BSHA1=1
-	DEBUG1=1
-	bncsutil_debug_message_a=printf
+	DEBUG=1
 )
 
 target_include_directories(bncsutil PUBLIC

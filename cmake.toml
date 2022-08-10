@@ -31,8 +31,7 @@ include-before = ["cmake/mpir.cmake"]
 link-libraries = ["mpir"]
 private-compile-definitions = [
     "USE_NEW_BSHA1=1",
-    "DEBUG1=1",
-    "bncsutil_debug_message_a=printf",
+    "DEBUG=1",
 ]
 cmake-after = """
 generate_resources(${CMKR_TARGET})
