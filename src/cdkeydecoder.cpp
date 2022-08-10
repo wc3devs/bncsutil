@@ -31,7 +31,7 @@
 #include <cctype> // for isdigit(), isalnum(), and toupper()
 #include <cstring> // for memcpy()
 #include <cstdio> // for sscanf()
-// #include <bncsutil/debug.h>
+#include <bncsutil/debug.h>
 
 /**
  * Implementation-specific CD-key hash structure.

@@ -38,6 +38,7 @@
     #include <errno.h>
     #include <time.h>
 #endif
+#include <bncsutil/debug.h>
 #include <stdlib.h>
 #include <string.h>
 

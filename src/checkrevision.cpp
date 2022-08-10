@@ -26,6 +26,7 @@
 #include <bncsutil/mutil.h>
 #include <bncsutil/checkrevision.h>
 #include <bncsutil/file.h>
+#include <bncsutil/debug.h>
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
@@ -508,4 +509,3 @@ MEXP(int) getExeInfo(const char* file_name, char* exe_info,
 #ifdef __cplusplus
 } // extern "C"
 #endif
-
