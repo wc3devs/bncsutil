@@ -30,8 +30,8 @@ include-directories = [
 include-before = ["cmake/mpir.cmake"]
 link-libraries = ["mpir"]
 private-compile-definitions = [
-    "USE_NEW_BSHA1=1",
-    "DEBUG=1",
+    "USE_NEW_BSHA1=${USE_NEW_BSHA1}",
+    "BNCSUTIL_DEBUG_MESSAGES=${BNCSUTIL_DEBUG_MESSAGES}",
 ]
 cmake-after = """
 generate_resources(${CMKR_TARGET})

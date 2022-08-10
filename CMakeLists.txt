@@ -87,8 +87,8 @@ endif()
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${bncsutil_SOURCES})
 
 target_compile_definitions(bncsutil PRIVATE
-	USE_NEW_BSHA1=1
-	DEBUG=1
+	USE_NEW_BSHA1=${USE_NEW_BSHA1}
+	BNCSUTIL_DEBUG_MESSAGES=${BNCSUTIL_DEBUG_MESSAGES}
 )
 
 target_include_directories(bncsutil PUBLIC
