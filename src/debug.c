@@ -247,8 +247,9 @@ MEXP(void) bncsutil_debug_dump(const void* data, size_t data_length)
   if (!env->enabled) {
     return;
   }
-
+#ifdef MOS_WINDOWS
   debug_intense_color(env);
+#endif
   for (i = 0; i < data_length; i++) {
     on_boundary = ((i + 1) % 16 == 0);
 
