@@ -26,6 +26,7 @@
 #include <bncsutil/mutil.h> // for MEXP()
 #include <bncsutil/bsha1.h>
 #include <bncsutil/oldauth.h>
+#include <bncsutil/debug.h>
 #include <cstring> // for strlen
 
 /**

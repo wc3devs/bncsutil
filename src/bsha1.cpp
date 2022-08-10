@@ -27,8 +27,6 @@
 #include <bncsutil/bsha1.h>
 #include <cstring>
 
-#define USE_NEW_BSHA1    0
-
 #define BSHA_IC1 0x67452301lu
 #define BSHA_IC2 0xEFCDAB89lu
 #define BSHA_IC3 0x98BADCFElu
@@ -70,7 +68,7 @@
 #endif
 
 #if USE_NEW_BSHA1
-MEXP(void) calcHashBuf(const char* input, unsigned int length, char* result) {
+MEXP(void) calcHashBuf(const char* input, size_t length, char* result) {
     uint32_t vals[5];
     uint32_t t[5];        // a, b, c, d, e
     uint32_t buf[0x50];

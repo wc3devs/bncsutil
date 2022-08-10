@@ -31,7 +31,7 @@
 #include <cctype> // for isdigit(), isalnum(), and toupper()
 #include <cstring> // for memcpy()
 #include <cstdio> // for sscanf()
-// #include <bncsutil/debug.h>
+#include <bncsutil/debug.h>
 
 /**
  * Implementation-specific CD-key hash structure.
@@ -69,9 +69,7 @@ CDKeyDecoder::CDKeyDecoder() {
     keyHash = (char*) 0;
 }
 
-CDKeyDecoder::CDKeyDecoder(const char* cd_key) {
-    CDKeyDecoder(cd_key, std::strlen(cd_key));
-}
+CDKeyDecoder::CDKeyDecoder(const char* cd_key) : CDKeyDecoder(cd_key, std::strlen(cd_key)) {}
 
 /**
  * Creates a new CD-key decoder object, using the specified key.

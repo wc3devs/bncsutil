@@ -1,5 +1,6 @@
 #include <bncsutil/mutil.h>
 #include <bncsutil/file.h>
+#include <bncsutil/debug.h>
 #include <map>
 #include <stdexcept>
 
@@ -61,16 +62,20 @@ file_t file_open(const char* filename, unsigned int mode)
         FILE_ATTRIBUTE_NORMAL, NULL);
 
     if (file == INVALID_HANDLE_VALUE) {
-        //sys_err = sys_error_msg();
-        //bncsutil_debug_message_a("Cannot open file \"%s\"; %s", filename, sys_err);
-        //free_sys_err_msg(sys_err);
+#if DEBUG
+        auto sys_err = sys_error_msg();
+        bncsutil_debug_message_a("Cannot open file \"%s\"; %s", filename, sys_err);
+        free_sys_err_msg(sys_err);
+#endif
         return ((file_t) 0);
     }
 
     try {
         data = new _file;
     } catch (std::bad_alloc) {
-        //bncsutil_debug_message_a("Failed to allocate %u bytes to hold file structure.", sizeof(struct _file));
+#if DEBUG
+        bncsutil_debug_message_a("Failed to allocate %u bytes to hold file structure.", sizeof(struct _file));
+#endif
         CloseHandle(file);
         return (file_t) 0;
     }
@@ -78,7 +83,9 @@ file_t file_open(const char* filename, unsigned int mode)
     filename_buf_len = strlen(filename) + 1;
     data->filename = (const char*) malloc(filename_buf_len);
     if (!data->filename) {
-        //bncsutil_debug_message_a("Failed to allocate %u bytes to hold filename.", filename_buf_len);
+#if DEBUG
+        bncsutil_debug_message_a("Failed to allocate %u bytes to hold filename.", filename_buf_len);
+#endif
         CloseHandle(file);
         delete data;
         return (file_t) 0;
@@ -95,7 +102,9 @@ void file_close(file_t file)
     mapping_map::iterator it;
 
     if (!file) {
-        //bncsutil_debug_message_a("error: null pointer given to file_close");
+#if DEBUG
+        bncsutil_debug_message_a("error: null pointer given to file_close");
+#endif
         return;
     }
 
@@ -141,21 +150,24 @@ void* file_map(file_t file, size_t len, off_t offset)
     HANDLE mapping =
         CreateFileMapping((HANDLE) file->f, NULL, PAGE_READONLY, 0, 0, NULL);
     void* base;
-    //const char* err;
 
     if (!mapping) {
-        //err = sys_error_msg();
-        //bncsutil_debug_message_a("Failed to create file mapping for \"%s\": %s", file->filename, err);
-        //free_sys_err_msg(err);
+#if DEBUG
+        auto err = sys_error_msg();
+        bncsutil_debug_message_a("Failed to create file mapping for \"%s\": %s", file->filename, err);
+        free_sys_err_msg(err);
+#endif
         return (void*) 0;
     }
 
     base = MapViewOfFile(mapping, FILE_MAP_READ, 0, (DWORD) offset, len);
     if (!base) {
         CloseHandle(mapping);
-        //err = sys_error_msg();
-        //bncsutil_debug_message_a("Failed to map %u bytes of \"%s\" starting at %u: %s", len, file->filename, offset, err);
-        //free_sys_err_msg(err);
+#if DEBUG
+        auto err = sys_error_msg();
+        bncsutil_debug_message_a("Failed to map %u bytes of \"%s\" starting at %u: %s", len, file->filename, offset, err);
+        free_sys_err_msg(err);
+#endif
         return (void*) 0;
     }
 
@@ -170,7 +182,9 @@ void file_unmap(file_t file, const void* base)
     HANDLE mapping;
 
     if (item == file->mappings.end()) {
-        //bncsutil_debug_message_a("warning: failed to unmap the block starting at %p from %s; unknown block.", base, file->filename);
+#if DEBUG
+        bncsutil_debug_message_a("warning: failed to unmap the block starting at %p from %s; unknown block.", base, file->filename);
+#endif
         return;
     }
 
@@ -203,7 +217,9 @@ file_t file_open(const char* filename, unsigned int mode_flags)
     try {
         data = new _file;
     } catch (std::bad_alloc) {
-        //bncsutil_debug_message_a("Failed to allocate %u bytes to hold file structure.", sizeof(struct _file));
+#if DEBUG
+        bncsutil_debug_message_a("Failed to allocate %u bytes to hold file structure.", sizeof(struct _file));
+#endif
         fclose(f);
         return (file_t) 0;
     }
@@ -211,9 +227,11 @@ file_t file_open(const char* filename, unsigned int mode_flags)
     filename_buf_len = strlen(filename) + 1;
     data->filename = (const char*) malloc(filename_buf_len);
     if (!data->filename) {
-       //err = sys_error_msg();
-        //bncsutil_debug_message_a("Failed to allocate %u bytes to hold filename; %s", filename_buf_len);
-        //free_sys_err_msg(err);
+#if DEBUG
+        auto err = sys_error_msg();
+        bncsutil_debug_message_a("Failed to allocate %u bytes to hold filename; %s", filename_buf_len);
+        free_sys_err_msg(err);
+#endif
         fclose(f);
         delete data;
         return (file_t) 0;
@@ -230,7 +248,9 @@ void file_close(file_t file)
     mapping_map::iterator it;
 
     if (!file) {
-        //bncsutil_debug_message("error: null pointer given to file_close");
+#if DEBUG
+        bncsutil_debug_message("error: null pointer given to file_close");
+#endif
         return;
     }
 
@@ -272,9 +292,11 @@ void* file_map(file_t file, size_t len, off_t offset)
     //const char* err;
 
     if (!base) {
-       //err = sys_error_msg();
-        //bncsutil_debug_message_a("error: failed to map %u bytes of %s starting at %u into memory; %s", len, file->filename, offset,    err);
-        //free_sys_err_msg(err);
+#if DEBUG
+        auto err = sys_error_msg();
+        bncsutil_debug_message_a("error: failed to map %u bytes of %s starting at %u into memory; %s", len, file->filename, offset,    err);
+        free_sys_err_msg(err);
+#endif
         return (void*) 0;
     }
 
@@ -289,7 +311,9 @@ void file_unmap(file_t file, const void* base)
     size_t len;
 
     if (item == file->mappings.end()) {
-        //bncsutil_debug_message_a("warning: failed to unmap the block starting at %p from %s; unknown block.", base, file->filename);
+#if DEBUG
+        bncsutil_debug_message_a("warning: failed to unmap the block starting at %p from %s; unknown block.", base, file->filename);
+#endif
         return;
     }
 
