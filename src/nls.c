@@ -25,6 +25,7 @@
 
 #include <bncsutil/nls.h>
 #include <bncsutil/sha1.h>
+#include <bncsutil/debug.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
