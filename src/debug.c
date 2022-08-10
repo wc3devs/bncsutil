@@ -16,6 +16,7 @@
 #include <windows.h>
 #else
 #include <time.h>
+#include <errno.h>
 #endif
 
 struct _bncsutil_debug_env
@@ -331,7 +332,7 @@ const char* sys_error_msg()
   return (const char*) strerror(errno);
 }
 
-void free_sys_err_msg()
+void free_sys_err_msg(const char* message_pointer)
 {
   /* Do nothing. */
 }
