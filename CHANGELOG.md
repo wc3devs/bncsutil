@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0](https://github.com/wc3devs/bncsutil/compare/v1.1.14...v1.2.0) (2022-08-10)
+
+
+### Features
+
+* **bsha1:** control `USE_NEW_BSHA1` using cmkr ([cb960ef](https://github.com/wc3devs/bncsutil/commit/cb960ef4009a1fde0128e36fd52962c8d2aff249))
+* **cmake:** add debug compile definitions ([ecb0e5b](https://github.com/wc3devs/bncsutil/commit/ecb0e5b6835e6e3e3996d8816fda392977c2ec3c))
+* **cmake:** add resources ([8acfb50](https://github.com/wc3devs/bncsutil/commit/8acfb50664f2bc98a9427c4209e8139d59a161bf))
+* **cmake:** use doctest to provide testing features ([cb6b8a5](https://github.com/wc3devs/bncsutil/commit/cb6b8a5196069d5e2df87baca8fcf2cf42399983))
+* **debug:** init debug sources ([fce1bcc](https://github.com/wc3devs/bncsutil/commit/fce1bcc27d51cf2cc7874f2b1dcbb90ffc61fc83))
+* **debug:** integrate debug lib ([5de86f7](https://github.com/wc3devs/bncsutil/commit/5de86f7c3fc0b0c6e389e799c51376a15107ccbc))
+* **file:** add debugging sections ([89dcb2e](https://github.com/wc3devs/bncsutil/commit/89dcb2e1b50edd9b0a6f679a59fe58490e3056da))
+* **tests:** add default nls test ([c6380f9](https://github.com/wc3devs/bncsutil/commit/c6380f970f0655ff038094903aaf7f6dc6eda74d))
+* **tests:** add library testing ([#4](https://github.com/wc3devs/bncsutil/issues/4)) ([a17c000](https://github.com/wc3devs/bncsutil/commit/a17c000d0b797e930ac140ae3df3f4a411898f13))
+* **tests:** add library version testing ([535ce32](https://github.com/wc3devs/bncsutil/commit/535ce32048b0e80b2f349a0616e0524d893d13fa))
+* **tests:** checkrevision testing ([1ed21ab](https://github.com/wc3devs/bncsutil/commit/1ed21ab54e399a4932299ffbd1febec8e5abc05d))
+* **workflow:** add windows build flow ([c8f493d](https://github.com/wc3devs/bncsutil/commit/c8f493da49f6ff6c8a7e51e3ac21ea44a5a3aee0))
+
+
+### Bug Fixes
+
+* **cdkeydecoder:** context destruction ([62598f7](https://github.com/wc3devs/bncsutil/commit/62598f7c7b318a89ffbe3eb25c6d18910bd49dd2))
+* **checkrevision:** debug messages ([7122b9b](https://github.com/wc3devs/bncsutil/commit/7122b9b94b6d72e4b37a8c6522d4e1fe4abb825f))
+* **cmake:** use `BNCSUTIL_DEBUG_MESSAGES` variable ([4e99256](https://github.com/wc3devs/bncsutil/commit/4e992561d036616fb2722586cb79510995594f11))
+* **debug:** linux `free_sys_err_msg` declaration ([a117e73](https://github.com/wc3devs/bncsutil/commit/a117e73fc14e5429be3da152c5c9720004a65de1))
+* **debug:** set `debug_intense_color` only for windows ([824f96d](https://github.com/wc3devs/bncsutil/commit/824f96d98b6a75e2d6db94278e556eaea6efb37b))
+* **debug:** unlock debugging mechanism ([5d89fd9](https://github.com/wc3devs/bncsutil/commit/5d89fd97c77bfe1bf2fa20a7a2344dcf90ac934e))
+* **debug:** warnings ([1890e55](https://github.com/wc3devs/bncsutil/commit/1890e55289dcb595effb6e2982ff707f8e829266))
+* **deps:** correct mpir path ([b107a89](https://github.com/wc3devs/bncsutil/commit/b107a894b5a09f354a253264ac461b2451ab60e2))
+* **multi:** export functions via `dllexport` ([aaa3de8](https://github.com/wc3devs/bncsutil/commit/aaa3de85030ba19d5335c985efbd8f25a80d652e))
+* **resources:** update to 1.28 ([1108041](https://github.com/wc3devs/bncsutil/commit/1108041a1d2e6c92452fbde36fab169bc610941f))
+* **test:** add new testing cases ([a6a1bc7](https://github.com/wc3devs/bncsutil/commit/a6a1bc7f5625e4ccd7934be408799063ffad2fce))
+* **test:** remove old testing ([ba43f17](https://github.com/wc3devs/bncsutil/commit/ba43f178d8eca07e1f4662244952fd76c3164d48))
+* **tests:** add newline ([26926c3](https://github.com/wc3devs/bncsutil/commit/26926c3ed00d44ef22670edde3e82c08edaaab10))
+* **tests:** remove usused tests ([af6bffe](https://github.com/wc3devs/bncsutil/commit/af6bffee912f78c2deebde3dd9e6c77dc964b134))
+* **tests:** update values ([588cf6a](https://github.com/wc3devs/bncsutil/commit/588cf6a8851f46402a9c387c0f2003e9b7b42b89))
+* **workflow:** cache folder ([0d81d40](https://github.com/wc3devs/bncsutil/commit/0d81d4068434575a09e90731d1ec9814a81f6e41))
+* **workflow:** library management ([5759c9a](https://github.com/wc3devs/bncsutil/commit/5759c9af59a6905f59d22cf9eb276c4553777916))
+* **workflow:** provide `BNCSUTIL_DEBUG_MESSAGES` variable ([ba95d91](https://github.com/wc3devs/bncsutil/commit/ba95d9136baece77b0179d8651a7ec5e183df5c5))
+* **workflow:** test workflow disable version providing ([7445e42](https://github.com/wc3devs/bncsutil/commit/7445e42441a77dd2323e724cbd4172bf339eb354))
+* **workflow:** windows binary execution ([f175c30](https://github.com/wc3devs/bncsutil/commit/f175c30141df983a0885298344f8e127e4cb4926))
+* **workflow:** windows binary files path ([c72ea9a](https://github.com/wc3devs/bncsutil/commit/c72ea9ab91a70f63280d44915a4ceab363aa7c96))
+* **workflow:** windows download artifact ([2ff01de](https://github.com/wc3devs/bncsutil/commit/2ff01de0a335523b0c4b591d384de2d68bc9abb0))
+
 ### [1.1.14](https://github.com/wc3devs/bncsutil/compare/v1.1.13...v1.1.14) (2022-08-08)
 
 
