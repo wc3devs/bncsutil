@@ -40,7 +40,10 @@ jobs:
 
       - name: Build
         run: |
-          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.release }} -DWORKFLOW_PROVIDED_VERSION=${{ steps.version.outputs.version }}
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.release }} \
+            -DWORKFLOW_PROVIDED_VERSION=${{ steps.version.outputs.version }} \
+            -DUSE_NEW_BSHA1=1 \
+            -DBNCSUTIL_DEBUG_MESSAGES=0
           cmake --build build --config ${{ matrix.release }} --parallel
           cmake --install build --prefix . --config ${{ matrix.release }}
 
