@@ -26,8 +26,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            build/_deps
-            build/vcpkg_installed
+            build
           key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
           restore-keys: |
             ${{ runner.os }}-vcpkg-
