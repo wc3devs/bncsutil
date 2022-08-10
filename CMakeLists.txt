@@ -115,11 +115,9 @@ list(APPEND test_SOURCES
 	"tests/bsha1.cpp"
 	"tests/cdkeydecoder.cpp"
 	"tests/checkrevision.cpp"
-	"tests/decodekey.cpp"
 	"tests/libinfo.cpp"
 	"tests/main.cpp"
 	"tests/nls.cpp"
-	"tests/oldauth.cpp"
 )
 
 list(APPEND test_SOURCES
