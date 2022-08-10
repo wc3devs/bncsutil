@@ -39,9 +39,14 @@ jobs:
           cmake --install build --prefix ./install --config ${{ matrix.type }}
 
       - name: Test
-        run: |
-          ./test
+        if: matrix.os == 'ubuntu-latest'
+        run: ./test
         working-directory: build
+
+      - name: Test
+        if: matrix.os == 'windows-latest'
+        run: test.exe
+        working-directory: build/${{ matrix.type }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
