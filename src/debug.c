@@ -124,12 +124,11 @@ debug_env_t get_debug_environment()
 
   if (!env) {
     env = (debug_env_t) malloc(sizeof(struct _bncsutil_debug_env));
-/*#if defined(BNCSUTIL_DEBUG_MESSAGES) && BNCSUTIL_DEBUG_MESSAGES
+#if defined(BNCSUTIL_DEBUG_MESSAGES) && BNCSUTIL_DEBUG_MESSAGES
 		env->enabled = 1;
 #else
 		env->enabled = 0;
-#endif*/
-    env->enabled = 0;
+#endif
 
 #ifdef MOS_WINDOWS
     env->output = (HANDLE) NULL;
