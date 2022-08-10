@@ -23,7 +23,7 @@ TEST_CASE("checkRevision") {
   auto result = checkRevision(formula, files, 3, 7, &checksum);
 
   CHECK_EQ(result, 1);
-  CHECK_EQ(checksum, 801247283);
+  CHECK_EQ(checksum, 295306795);
 }
 
 TEST_CASE("exeInfo") {
@@ -32,7 +32,7 @@ TEST_CASE("exeInfo") {
   auto result = getExeInfo(files[0], exeInfo, BUFSIZ, &version, BNCSUTIL_PLATFORM_X86);
 
   CHECK_EQ(result, 33);
-  CHECK_EQ(version, 18481153);
+  CHECK_EQ(version, 18613504);
   MESSAGE("EXE Info: ", exeInfo);
 }
 
