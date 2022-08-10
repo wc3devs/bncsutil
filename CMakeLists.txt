@@ -99,6 +99,9 @@ target_link_libraries(bncsutil PUBLIC
 	mpir
 )
 
+configure_file("${CMAKE_SOURCE_DIR}/resources/war3.exe" "resources/war3.exe" COPYONLY)
+configure_file("${CMAKE_SOURCE_DIR}/resources/game.dll" "resources/game.dll" COPYONLY)
+configure_file("${CMAKE_SOURCE_DIR}/resources/Storm.dll" "resources/Storm.dll" COPYONLY)
 generate_resources(${CMKR_TARGET})
 
 unset(CMKR_TARGET)
