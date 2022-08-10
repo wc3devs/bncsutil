@@ -295,7 +295,7 @@ MEXP(void) bncsutil_debug_dump(const void* data, size_t data_length)
 #ifdef MOS_WINDOWS
       debug_set_color(env, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 #endif
-      sprintf(pos_indicator, "%04X  ", i + 1);
+      sprintf(pos_indicator, "%04llX  ", i + 1);
 #ifdef MOS_WINDOWS
       debug_restore_color(env);
 #endif
@@ -323,7 +323,7 @@ const char* sys_error_msg()
 void free_sys_err_msg(const char* message_pointer)
 {
 	if (message_pointer)
-		LocalFree(message_pointer);
+		LocalFree((void *)message_pointer);
 }
 
 #else
