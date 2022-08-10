@@ -162,9 +162,11 @@ MEXP(int) checkRevision(const char* formula, const char* files[], int numFiles,
 #endif
 
     if (!formula || !files || numFiles == 0 || mpqNumber < 0 || !checksum) {
-        //bncsutil_debug_message("error: checkRevision() parameter sanity check "
-        //    "failed");
-        return 0;
+#if DEBUG
+        bncsutil_debug_message("error: checkRevision() parameter sanity check "
+            "failed");
+#endif
+      return 0;
     }
 
     seed_count = checkrevision_seeds.size();
@@ -174,8 +176,10 @@ MEXP(int) checkRevision(const char* formula, const char* files[], int numFiles,
     }
 
     if (seed_count <= (size_t) mpqNumber) {
-        //bncsutil_debug_message_a("error: no revision check seed value defined "
-        //    "for MPQ number %d", mpqNumber);
+#if DEBUG
+        bncsutil_debug_message_a("error: no revision check seed value defined "
+            "for MPQ number %d", mpqNumber);
+#endif
         return 0;
     }
 
@@ -184,8 +188,10 @@ MEXP(int) checkRevision(const char* formula, const char* files[], int numFiles,
         if (*(token + 1) == '=') {
             int variable = BUCR_GETNUM(*token);
             if (variable < 0 || variable > 3) {
-                //bncsutil_debug_message_a("error: Unknown revision check formula"
-                //    " variable %c", *token);
+#if DEBUG
+                bncsutil_debug_message_a("error: Unknown revision check formula"
+                    " variable %c", *token);
+#endif
                 return 0;
             }
 
@@ -194,9 +200,11 @@ MEXP(int) checkRevision(const char* formula, const char* files[], int numFiles,
                 values[variable] = ATOL64(token);
             } else {
                 if (curFormula > 3) {
+#if DEBUG
                     // more than 4 operations?  bloody hell.
-                    //bncsutil_debug_message("error: Revision check formula"
-                    //    " contains more than 4 operations; unsupported.");
+                    bncsutil_debug_message("error: Revision check formula"
+                        " contains more than 4 operations; unsupported.");
+#endif
                     return 0;
                 }
                 ovd[curFormula] = variable;
@@ -224,8 +232,10 @@ MEXP(int) checkRevision(const char* formula, const char* files[], int numFiles,
 
         f = file_open(files[i], FILE_READ);
         if (!f) {
-            //bncsutil_debug_message_a("error: Failed to open file %s",
-            //    files[i]);
+#if DEBUG
+            bncsutil_debug_message_a("error: Failed to open file %s",
+                files[i]);
+#endif
             return 0;
         }
 
@@ -236,8 +246,10 @@ MEXP(int) checkRevision(const char* formula, const char* files[], int numFiles,
         file_buffer = (uint8_t*) file_map(f, file_len, 0);
         if (!file_buffer) {
             file_close(f);
-            //bncsutil_debug_message_a("error: Failed to map file %s into memory",
-            //    files[i]);
+#if DEBUG
+            bncsutil_debug_message_a("error: Failed to map file %s into memory",
+                files[i]);
+#endif
             return 0;
         }
 
@@ -254,8 +266,10 @@ MEXP(int) checkRevision(const char* formula, const char* files[], int numFiles,
             buffer_size = file_len + extra;
             dwBuf = (uint32_t*) malloc(buffer_size);
             if (!dwBuf) {
-                //bncsutil_debug_message_a("error: Failed to allocate %d bytes "
-                //    "of memory as a temporary buffer", buffer_size);
+#if DEBUG
+                bncsutil_debug_message_a("error: Failed to allocate %d bytes "
+                    "of memory as a temporary buffer", buffer_size);
+#endif
                 file_unmap(f, file_buffer);
                 file_close(f);
                 return 0;
