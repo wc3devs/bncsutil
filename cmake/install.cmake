@@ -18,7 +18,8 @@ install(TARGETS ${CMKR_TARGET}
         EXPORT ${CMKR_TARGET}Config
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 
-install(CODE "file(REMOVE \"$<TARGET_PROPERTY:bncsutil,IMPORTED_LOCATION>\")")
+install(CODE "file(REMOVE \"install/lib/libbncsutil.a\")")
+install(CODE "file(REMOVE \"install/lib/bncsutil.lib\")")
 
 install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}bncsutil_bundle${CMAKE_STATIC_LIBRARY_SUFFIX}
         DESTINATION "${CMAKE_INSTALL_LIBDIR}"
