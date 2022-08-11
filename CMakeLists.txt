@@ -80,7 +80,7 @@ list(APPEND bncsutil_SOURCES
 )
 
 set(CMKR_SOURCES ${bncsutil_SOURCES})
-add_library(bncsutil STATIC)
+add_library(bncsutil SHARED)
 
 if(bncsutil_SOURCES)
 	target_sources(bncsutil PRIVATE ${bncsutil_SOURCES})
@@ -94,17 +94,15 @@ target_compile_definitions(bncsutil PRIVATE
 )
 
 target_include_directories(bncsutil PUBLIC
-	include
+	"$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>"
+	"$<INSTALL_INTERFACE:include>"
 )
 
 target_link_libraries(bncsutil PUBLIC
-	mpir
+	"$<BUILD_INTERFACE:mpir>"
 )
 
-configure_file("${CMAKE_SOURCE_DIR}/resources/war3.exe" "resources/war3.exe" COPYONLY)
-configure_file("${CMAKE_SOURCE_DIR}/resources/game.dll" "resources/game.dll" COPYONLY)
-configure_file("${CMAKE_SOURCE_DIR}/resources/Storm.dll" "resources/Storm.dll" COPYONLY)
-generate_resources(${CMKR_TARGET})
+include("cmake/install.cmake")
 
 unset(CMKR_TARGET)
 unset(CMKR_SOURCES)
@@ -148,11 +146,3 @@ target_link_libraries(test PRIVATE
 unset(CMKR_TARGET)
 unset(CMKR_SOURCES)
 
-install(
-	TARGETS
-		bncsutil
-	DESTINATION
-		lib
-	COMPONENT
-		bncsutil
-)

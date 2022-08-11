@@ -21,33 +21,25 @@ packages = ["mpir", "doctest"]
 doctest = {}
 
 [target.bncsutil]
-type = "static"
+type = "shared"
 sources = [
     "src/*.cpp",
     "src/*.c",
     "cmake/libinfo.h.in",
 ]
 include-directories = [
-    "include",
+    "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>",
+    "$<INSTALL_INTERFACE:include>",
 ]
 include-before = ["cmake/mpir.cmake"]
-link-libraries = ["mpir"]
+include-after = ["cmake/install.cmake"]
+link-libraries = ["$<BUILD_INTERFACE:mpir>"]
 private-compile-definitions = [
     "USE_NEW_BSHA1=${USE_NEW_BSHA1}",
     "BNCSUTIL_DEBUG_MESSAGES=${BNCSUTIL_DEBUG_MESSAGES}",
 ]
-cmake-after = """
-configure_file("${CMAKE_SOURCE_DIR}/resources/war3.exe" "resources/war3.exe" COPYONLY)
-configure_file("${CMAKE_SOURCE_DIR}/resources/game.dll" "resources/game.dll" COPYONLY)
-configure_file("${CMAKE_SOURCE_DIR}/resources/Storm.dll" "resources/Storm.dll" COPYONLY)
-generate_resources(${CMKR_TARGET})
-"""
 
 [target.test]
 type = "executable"
 sources = ["tests/*.cpp"]
 link-libraries = ["doctest::doctest", "bncsutil"]
-
-[[install]]
-targets = ["bncsutil"]
-destination = "lib"
