@@ -27,12 +27,13 @@ if(CMKR_ROOT_PROJECT)
 	configure_file(cmake.toml cmake.toml COPYONLY)
 endif()
 
+
 project(bncsutil
 	LANGUAGES
 		C
 		CXX
 	VERSION
-		${WORKFLOW_PROVIDED_VERSION}
+		${VERSION}
 )
 
 include("cmake/generate.cmake")
