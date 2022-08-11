@@ -7,7 +7,7 @@ name = "bncsutil"
 version = "${VERSION}"
 languages = ["C", "CXX"]
 include-before = [
-
+    "cmake/version.cmake",
 ]
 include-after = [
     "cmake/generate.cmake",

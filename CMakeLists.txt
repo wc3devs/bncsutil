@@ -27,6 +27,7 @@ if(CMKR_ROOT_PROJECT)
 	configure_file(cmake.toml cmake.toml COPYONLY)
 endif()
 
+include("cmake/version.cmake")
 
 project(bncsutil
 	LANGUAGES
