@@ -1,6 +1,8 @@
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
+bundle_static_library(${CMKR_TARGET} bncsutil_bundle)
+
 configure_file("${CMAKE_SOURCE_DIR}/resources/war3.exe" "resources/war3.exe" COPYONLY)
 configure_file("${CMAKE_SOURCE_DIR}/resources/game.dll" "resources/game.dll" COPYONLY)
 configure_file("${CMAKE_SOURCE_DIR}/resources/Storm.dll" "resources/Storm.dll" COPYONLY)
@@ -16,17 +18,16 @@ install(TARGETS ${CMKR_TARGET}
         EXPORT ${CMKR_TARGET}Config
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 
+install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}bncsutil_bundle${CMAKE_STATIC_LIBRARY_SUFFIX}
+        TYPE LIB
+        RENAME "${CMAKE_STATIC_LIBRARY_PREFIX}${CMKR_TARGET}${CMAKE_STATIC_LIBRARY_SUFFIX}")
+
 set_target_properties(
         ${CMKR_TARGET}
         PROPERTIES VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
         INTERFACE_${PROJECT_NAME}_MAJOR_VERSION ${PROJECT_VERSION_MAJOR}
         COMPATIBLE_INTERFACE_STRING ${PROJECT_VERSION_MAJOR})
-
-configure_package_config_file(
-        ${CMAKE_SOURCE_DIR}/cmake/module.cmake.in
-        "${CMAKE_BINARY_DIR}/CMakePackage/${CMKR_TARGET}Config.cmake"
-        INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${CMKR_TARGET})
 
 install(EXPORT ${CMKR_TARGET}Config
         DESTINATION lib/cmake/${CMKR_TARGET})

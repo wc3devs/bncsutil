@@ -10,6 +10,7 @@ include-before = [
     "cmake/version.cmake",
 ]
 include-after = [
+    "cmake/bundle.cmake",
     "cmake/generate.cmake",
 ]
 
@@ -21,7 +22,7 @@ packages = ["mpir", "doctest"]
 doctest = {}
 
 [target.bncsutil]
-type = "shared"
+type = "static"
 sources = [
     "src/*.cpp",
     "src/*.c",

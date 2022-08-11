@@ -37,6 +37,7 @@ project(bncsutil
 		${VERSION}
 )
 
+include("cmake/bundle.cmake")
 include("cmake/generate.cmake")
 
 if(CMKR_ROOT_PROJECT AND NOT CMKR_DISABLE_VCPKG)
@@ -80,7 +81,7 @@ list(APPEND bncsutil_SOURCES
 )
 
 set(CMKR_SOURCES ${bncsutil_SOURCES})
-add_library(bncsutil SHARED)
+add_library(bncsutil STATIC)
 
 if(bncsutil_SOURCES)
 	target_sources(bncsutil PRIVATE ${bncsutil_SOURCES})
