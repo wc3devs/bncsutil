@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.2.3](https://github.com/wc3devs/bncsutil/compare/v1.2.2...v1.2.3) (2022-08-11)
+
+
+### Bug Fixes
+
+* **cmake:** include version file ([d036729](https://github.com/wc3devs/bncsutil/commit/d0367299d12577f126f9d56348230abcf5c2d4b8))
+* **workflow:** remove newline delimiters ([85e2078](https://github.com/wc3devs/bncsutil/commit/85e2078af7289efaf00b84279b217a502f3ef69d))
+
 ### [1.2.2](https://github.com/wc3devs/bncsutil/compare/v1.2.1...v1.2.2) (2022-08-11)
 
 
