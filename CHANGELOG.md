@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.3.4](https://github.com/wc3devs/bncsutil/compare/v1.3.3...v1.3.4) (2022-08-11)
+
+
+### Bug Fixes
+
+* **cmake:** file remove paths ([583e263](https://github.com/wc3devs/bncsutil/commit/583e263f8d09acfa0bc69da2f39df1125729bc81))
+
 ### [1.3.3](https://github.com/wc3devs/bncsutil/compare/v1.3.2...v1.3.3) (2022-08-11)
 
 
