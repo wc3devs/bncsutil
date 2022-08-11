@@ -33,15 +33,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-vcpkg-
 
-      - id: version
-        run: |
-          version=$(echo ${{ github.ref_name }} | cut -d- -f2)
-          echo "::set-output name=version::${version:1}"
-
       - name: Build
         run: |
           cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.release }} \
-            -DWORKFLOW_PROVIDED_VERSION=${{ steps.version.outputs.version }} \
+            -DWORKFLOW_PROVIDED_VERSION=${{ github.ref_name }} \
             -DUSE_NEW_BSHA1=1 \
             -DBNCSUTIL_DEBUG_MESSAGES=0
           cmake --build build --config ${{ matrix.release }} --parallel
