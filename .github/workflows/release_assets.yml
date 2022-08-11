@@ -37,13 +37,13 @@ jobs:
         run: |
           cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.release }} -DWORKFLOW_PROVIDED_VERSION=${{ github.ref_name }} -DUSE_NEW_BSHA1=1 -DBNCSUTIL_DEBUG_MESSAGES=0
           cmake --build build --config ${{ matrix.release }} --parallel
-          cmake --install build --prefix . --config ${{ matrix.release }}
+          cmake --install build --prefix install --config ${{ matrix.release }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}
-          path: lib/*
+          path: install/*
 
   upload:
     runs-on: ubuntu-latest
@@ -60,12 +60,12 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: ${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}
-          path: lib/
+          path: install/
 
       - name: Create release archive
         run: |
           mkdir release
-          zip -r release/${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}.zip include lib
+          zip -r release/${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.release }}.zip install/*
 
       - name: Upload release assets
         uses: skx/github-action-publish-binaries@master
