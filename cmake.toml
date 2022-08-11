@@ -4,8 +4,11 @@ cmkr-include = "cmake/cmkr.cmake"
 
 [project]
 name = "bncsutil"
-version = "${WORKFLOW_PROVIDED_VERSION}"
+version = "${VERSION}"
 languages = ["C", "CXX"]
+include-before = [
+
+]
 include-after = [
     "cmake/generate.cmake",
 ]
