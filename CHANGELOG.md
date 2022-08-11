@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.3.1](https://github.com/wc3devs/bncsutil/compare/v1.3.0...v1.3.1) (2022-08-11)
+
+
+### Bug Fixes
+
+* **cmake:** add bundling function ([3cc4380](https://github.com/wc3devs/bncsutil/commit/3cc4380cbd51778a27dae06c2390246723fc52c8))
+* **cmake:** integrate bundling static libraries ([6cdea47](https://github.com/wc3devs/bncsutil/commit/6cdea47135451bc033227c494313bc3b7156c2c6))
+* **cmake:** remove unused template config ([1aca922](https://github.com/wc3devs/bncsutil/commit/1aca922467b74f783a2465a04832da38b5230ff5))
+
 ## [1.3.0](https://github.com/wc3devs/bncsutil/compare/v1.2.3...v1.3.0) (2022-08-11)
 
 
