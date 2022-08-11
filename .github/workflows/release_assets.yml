@@ -23,12 +23,15 @@ jobs:
         run: |
           sudo apt-get install -y yasm texinfo
 
+      - name: MSVC dev tools
+        if: matrix.os == 'windows-latest'
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: Caching vcpkg deps
         uses: actions/cache@v3
         with:
           path: |
-            build/_deps
-            build/vcpkg_installed
+            build
           key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
           restore-keys: |
             ${{ runner.os }}-vcpkg-
