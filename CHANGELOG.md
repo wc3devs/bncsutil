@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.3.2](https://github.com/wc3devs/bncsutil/compare/v1.3.1...v1.3.2) (2022-08-11)
+
+
+### Bug Fixes
+
+* **workflow:** add msvc dev tools ([0e96613](https://github.com/wc3devs/bncsutil/commit/0e96613b5f4b40f18449d8407962d5479c55b1e2))
+
 ### [1.3.1](https://github.com/wc3devs/bncsutil/compare/v1.3.0...v1.3.1) (2022-08-11)
 
 
