@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.2.1](https://github.com/wc3devs/bncsutil/compare/v1.2.0...v1.2.1) (2022-08-11)
+
+
+### Bug Fixes
+
+* **cmake:** `WORKFLOW_PROVIDED_VERSION` consumes full ref name ([3c915d5](https://github.com/wc3devs/bncsutil/commit/3c915d556c58d75d3c8086cabd1b5c7d435ffcd1))
+* **cmake:** add `VERSION` variable ([42b70ef](https://github.com/wc3devs/bncsutil/commit/42b70ef4efee2f7e26307bfcca2dbbbf90f349e1))
+
 ## [1.2.0](https://github.com/wc3devs/bncsutil/compare/v1.1.14...v1.2.0) (2022-08-10)
 
 
