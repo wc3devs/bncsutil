@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.2.2](https://github.com/wc3devs/bncsutil/compare/v1.2.1...v1.2.2) (2022-08-11)
+
+
+### Bug Fixes
+
+* **cmake:** generated file ([dadc7b6](https://github.com/wc3devs/bncsutil/commit/dadc7b6ceaa16f72ed23aecf8fe8137d8c2e24ab))
+
 ### [1.2.1](https://github.com/wc3devs/bncsutil/compare/v1.2.0...v1.2.1) (2022-08-11)
 
 
