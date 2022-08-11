@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.3.3](https://github.com/wc3devs/bncsutil/compare/v1.3.2...v1.3.3) (2022-08-11)
+
+
+### Bug Fixes
+
+* **cmake:** new copier for lib ([7c57d92](https://github.com/wc3devs/bncsutil/commit/7c57d929391071432255d5e685597e3c1485ebd7))
+* **cmake:** remove unbundled and copy bundled lib ([df98bb5](https://github.com/wc3devs/bncsutil/commit/df98bb5cf9e5d29495d2b6f56025ae8df949bc01))
+* **workflow:** add semicolons for version ([bf87957](https://github.com/wc3devs/bncsutil/commit/bf87957c7d72e165529a220154a0e1d3e2f52305))
+
 ### [1.3.2](https://github.com/wc3devs/bncsutil/compare/v1.3.1...v1.3.2) (2022-08-11)
 
 
