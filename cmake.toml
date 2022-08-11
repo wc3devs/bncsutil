@@ -21,7 +21,7 @@ packages = ["mpir", "doctest"]
 doctest = {}
 
 [target.bncsutil]
-type = "static"
+type = "shared"
 sources = [
     "src/*.cpp",
     "src/*.c",
@@ -33,7 +33,7 @@ include-directories = [
 ]
 include-before = ["cmake/mpir.cmake"]
 include-after = ["cmake/install.cmake"]
-private-link-libraries = ["$<BUILD_INTERFACE:mpir>"]
+link-libraries = ["$<BUILD_INTERFACE:mpir>"]
 private-compile-definitions = [
     "USE_NEW_BSHA1=${USE_NEW_BSHA1}",
     "BNCSUTIL_DEBUG_MESSAGES=${BNCSUTIL_DEBUG_MESSAGES}",

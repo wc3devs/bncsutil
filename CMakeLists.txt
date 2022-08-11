@@ -80,7 +80,7 @@ list(APPEND bncsutil_SOURCES
 )
 
 set(CMKR_SOURCES ${bncsutil_SOURCES})
-add_library(bncsutil STATIC)
+add_library(bncsutil SHARED)
 
 if(bncsutil_SOURCES)
 	target_sources(bncsutil PRIVATE ${bncsutil_SOURCES})
@@ -98,7 +98,7 @@ target_include_directories(bncsutil PUBLIC
 	"$<INSTALL_INTERFACE:include>"
 )
 
-target_link_libraries(bncsutil PRIVATE
+target_link_libraries(bncsutil PUBLIC
 	"$<BUILD_INTERFACE:mpir>"
 )
 
