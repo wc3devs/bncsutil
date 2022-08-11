@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0](https://github.com/wc3devs/bncsutil/compare/v1.2.3...v1.3.0) (2022-08-11)
+
+
+### Features
+
+* **cmake:** add `module.cmake.in` file ([bf0f518](https://github.com/wc3devs/bncsutil/commit/bf0f518b97079f1fe0478a4d7c5eb26bffd0b997))
+* **cmake:** add install instructions ([9057d55](https://github.com/wc3devs/bncsutil/commit/9057d55e6d443f855af6083a2dd9ab935677ce68))
+* **cmake:** include install after target provision ([ad156d2](https://github.com/wc3devs/bncsutil/commit/ad156d2c8cbee1740260cdd7ac0414e489b218fd))
+* **cmake:** library property installation ([#5](https://github.com/wc3devs/bncsutil/issues/5)) ([f8d1493](https://github.com/wc3devs/bncsutil/commit/f8d14939c8cbad7e8127bc89d81c218ffdc1102b))
+* **workflow:** adapt cmkr workflow for new installing capabilities ([052fa50](https://github.com/wc3devs/bncsutil/commit/052fa501007b4ff933a9141a87101aec93c7e1b4))
+
+
+### Bug Fixes
+
+* **cmake:** generator libinfo header ([9c43e14](https://github.com/wc3devs/bncsutil/commit/9c43e14b22c566b71055461ac8d26b092963956a))
+* **cmake:** use shared library for bncsutil ([af12c5d](https://github.com/wc3devs/bncsutil/commit/af12c5d2707d976ee8c0b30af02f3ac47290384a))
+* **workflow:** adapt release workflow for new cmake properties ([7beccda](https://github.com/wc3devs/bncsutil/commit/7beccda0dd1db22b9283fa7bb2611c9348851683))
+
 ### [1.2.3](https://github.com/wc3devs/bncsutil/compare/v1.2.2...v1.2.3) (2022-08-11)
 
 
