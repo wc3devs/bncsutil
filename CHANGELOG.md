@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.3.5](https://github.com/wc3devs/bncsutil/compare/v1.3.4...v1.3.5) (2022-08-12)
+
+
+### Bug Fixes
+
+* **workflow:** build old bsha1 version ([3756b71](https://github.com/wc3devs/bncsutil/commit/3756b715fc1658368305d825dbff1b91cb569807))
+
 ### [1.3.4](https://github.com/wc3devs/bncsutil/compare/v1.3.3...v1.3.4) (2022-08-11)
 
 
