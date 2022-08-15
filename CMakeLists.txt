@@ -64,13 +64,15 @@ set_target_properties(
 install(EXPORT bncsutilConfig
 		DESTINATION lib/cmake/bncsutil)
 
-find_package(doctest CONFIG REQUIRED)
+if (BUILD_TESTS STREQUAL true)
+	find_package(doctest CONFIG REQUIRED)
 
-file(GLOB test_SOURCES ${CMAKE_SOURCE_DIR}/tests/*.cpp)
+	file(GLOB test_SOURCES ${CMAKE_SOURCE_DIR}/tests/*.cpp)
 
-add_executable(test ${test_SOURCES})
+	add_executable(test ${test_SOURCES})
 
-target_link_libraries(test PRIVATE
-	doctest::doctest
-	bncsutil
-)
+	target_link_libraries(test PRIVATE
+		doctest::doctest
+		bncsutil
+	)
+endif()
