@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.4.1](https://github.com/wc3devs/bncsutil/compare/v1.4.0...v1.4.1) (2022-08-15)
+
+
+### Bug Fixes
+
+* **cmake:** add `BNCSUTIL_LIBRARY_LINKAGE` variable ([7a865f9](https://github.com/wc3devs/bncsutil/commit/7a865f9a3abe6e8391331d99537a1c2268cc6973))
+
 ## [1.4.0](https://github.com/wc3devs/bncsutil/compare/v1.3.5...v1.4.0) (2022-08-15)
 
 
