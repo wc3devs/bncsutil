@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.4.2](https://github.com/wc3devs/bncsutil/compare/v1.4.1...v1.4.2) (2022-08-15)
+
+
+### Bug Fixes
+
+* **cmake:** add `BUILD_TESTS` variable ([d4b3aaf](https://github.com/wc3devs/bncsutil/commit/d4b3aaf28e4c01680dfb47e2bfdd4096829d331f))
+
 ### [1.4.1](https://github.com/wc3devs/bncsutil/compare/v1.4.0...v1.4.1) (2022-08-15)
 
 
