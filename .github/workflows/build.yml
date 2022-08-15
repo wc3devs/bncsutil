@@ -1,0 +1,40 @@
+name: CMake
+
+on:
+  push:
+    branches:
+      - feature/*
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        type: [ Debug ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: lukka/get-cmake@latest
+
+      - name: Install dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install -y yasm texinfo
+
+      - uses: lukka/run-vcpkg@v10
+        with:
+          vcpkgDirectory: ${{ runner.workspace }}/vcpkg
+          vcpkgGitCommitId: d293ac220dd126165d24907b6f07e6b658b3329f
+          vcpkgJsonGlob: ${{ runner.workspace }}/vcpkg.json
+
+      - uses: lukka/run-cmake@v10
+        env:
+          VERSION: v0.0.0
+          USE_NEW_BSHA1: 1
+          BNCSUTIL_DEBUG_MESSAGES: 1
+        with:
+          configurePreset: ninja-multi-vcpkg
+          buildPreset: ninja-multi-vcpkg
