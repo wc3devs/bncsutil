@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0](https://github.com/wc3devs/bncsutil/compare/v1.3.5...v1.4.0) (2022-08-15)
+
+
+### Features
+
+* **cmake:** add cmake presets file ([a719a0f](https://github.com/wc3devs/bncsutil/commit/a719a0fed03102f4cecd9057a84d2699b57cba4e))
+* **workflow:** use smart github actions for building ([bfdc913](https://github.com/wc3devs/bncsutil/commit/bfdc913e0c4d7bbd0691ec78e0444490cf0758c5))
+
+
+### Bug Fixes
+
+* **cmake:** add additional info to `vcpkg.json` ([6489272](https://github.com/wc3devs/bncsutil/commit/64892727c48ab9b3920e23c9f19ba862931232bf))
+* **cmake:** add cached variables ([9c69b7b](https://github.com/wc3devs/bncsutil/commit/9c69b7b46475b434cd0ee3735e99abd26856234b))
+* **cmake:** new mpir finder ([0aaf03c](https://github.com/wc3devs/bncsutil/commit/0aaf03cf9963d3735daddf2dc7646096e7789463))
+* **cmake:** remove cmkr dependencies ([09e7ff8](https://github.com/wc3devs/bncsutil/commit/09e7ff89b1d1ce1ca3aea36742b445c0e4de2c30))
+* **cmake:** remove unused parts from main cmake ([1b76276](https://github.com/wc3devs/bncsutil/commit/1b762768ca4f51eac126b75c789740935e642fbf))
+* **cmake:** upgrade cmake presets file ([502829d](https://github.com/wc3devs/bncsutil/commit/502829d4ce39d773e8a0d8429f29754edad8ab16))
+* **workflow:** add environment variables ([bef1b15](https://github.com/wc3devs/bncsutil/commit/bef1b15f934836b18cf80d7cd6cafda796c671cc))
+* **workflow:** add parameters to vcpkg ([4645aa8](https://github.com/wc3devs/bncsutil/commit/4645aa80183c5a53e49b1a3ad22c589d47ace2e7))
+* **workflow:** delete unused workflows ([4911d0d](https://github.com/wc3devs/bncsutil/commit/4911d0df2546c27e6d5220ba5f2f5a4976d5ce4e))
+
 ### [1.3.5](https://github.com/wc3devs/bncsutil/compare/v1.3.4...v1.3.5) (2022-08-12)
 
 
