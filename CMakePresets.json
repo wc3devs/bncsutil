@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 2,
   "cmakeMinimumRequired": {
     "major": 3,
     "minor": 21,
@@ -31,6 +31,18 @@
         "CMAKE_TOOLCHAIN_FILE": {
           "type": "FILEPATH",
           "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        },
+        "BNCSUTIL_DEBUG_MESSAGES": {
+          "type": "string",
+          "value": "$env{BNCSUTIL_DEBUG_MESSAGES}"
+        },
+        "VERSION": {
+          "type": "string",
+          "value": "$env{VERSION}"
+        },
+        "USE_NEW_BSHA1": {
+          "type": "string",
+          "value": "$env{USE_NEW_BSHA1}"
         }
       }
     },
