@@ -31,6 +31,10 @@ jobs:
           vcpkgJsonGlob: ${{ runner.workspace }}/vcpkg.json
 
       - uses: lukka/run-cmake@v10
+        env:
+          VERSION: v0.0.0
+          USE_NEW_BSHA1: 1
+          BNCSUTIL_DEBUG_MESSAGES: 1
         with:
           configurePreset: ninja-multi-vcpkg
           buildPreset: ninja-multi-vcpkg
