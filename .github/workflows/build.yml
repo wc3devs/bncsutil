@@ -1,0 +1,32 @@
+name: CMake
+
+on:
+  push:
+    branches:
+      - feature/*
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        type: [ Debug ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: lukka/get-cmake@latest
+
+      - name: Install dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install -y yasm texinfo
+
+      - uses: lukka/run-vcpkg@v10
+
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: ninja-multi-vcpkg
+          buildPreset: ninja-multi-vcpkg
