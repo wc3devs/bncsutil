@@ -21,7 +21,13 @@ configure_file("${CMAKE_SOURCE_DIR}/resources/Storm.dll" "${CMAKE_BINARY_DIR}/re
 
 file(GLOB bncsutil_SOURCES ${CMAKE_SOURCE_DIR}/src/*.*)
 
-add_library(bncsutil STATIC ${bncsutil_SOURCES})
+if (BNCSUTIL_LIBRARY_LINKAGE STREQUAL dynamic)
+	set(LINKAGE "SHARED")
+else()
+	set(LINKAGE "STATIC")
+endif()
+
+add_library(bncsutil ${LINKAGE} ${bncsutil_SOURCES})
 
 target_compile_definitions(bncsutil PRIVATE
 	USE_NEW_BSHA1=${USE_NEW_BSHA1}

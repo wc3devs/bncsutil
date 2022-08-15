@@ -35,6 +35,7 @@ jobs:
           VERSION: v0.0.0
           USE_NEW_BSHA1: 1
           BNCSUTIL_DEBUG_MESSAGES: 1
+          BNCSUTIL_LIBRARY_LINKAGE: static
         with:
           configurePreset: ninja-multi-vcpkg
           buildPreset: ninja-multi-vcpkg

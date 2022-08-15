@@ -43,6 +43,10 @@
         "USE_NEW_BSHA1": {
           "type": "string",
           "value": "$env{USE_NEW_BSHA1}"
+        },
+        "BNCSUTIL_LIBRARY_LINKAGE": {
+          "type": "string",
+          "value": "$env{BNCSUTIL_LIBRARY_LINKAGE}"
         }
       }
     },
