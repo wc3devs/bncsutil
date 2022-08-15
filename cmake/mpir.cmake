@@ -1,22 +1,15 @@
-if (CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(arch "x64")
-else()
-    set(arch "x32")
+find_path(MPIR_INCLUDE_DIR "gmp.h" HINTS ${CURRENT_INSTALLED_DIR} PATH_SUFFIXES include)
+if(NOT MPIR_INCLUDE_DIR)
+    message(FATAL_ERROR "GMP includes not found")
 endif()
 
-if (WIN32)
-    set(OS "windows")
-    set(EXTENSION "lib")
-elseif(UNIX)
-    set(OS "linux")
-    set(EXTENSION "a")
-    set(PREFIX "lib")
-else()
-    set(OS "macos")
+find_library(MPIR_LIBRARIES_REL NAMES "${CMAKE_STATIC_LIBRARY_PREFIX}mpir${CMAKE_STATIC_LIBRARY_SUFFIX}" HINTS ${CURRENT_INSTALLED_DIR} PATH_SUFFIXES lib)
+if(NOT MPIR_LIBRARIES_REL)
+    message(FATAL_ERROR "mpir library not found")
 endif()
 
 add_library(mpir STATIC IMPORTED)
 set_target_properties(mpir PROPERTIES
-    IMPORTED_LOCATION "${CMAKE_BINARY_DIR}/vcpkg_installed/${arch}-${OS}/lib/${PREFIX}mpir.${EXTENSION}"
-    INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_BINARY_DIR}/vcpkg_installed/${arch}-${OS}/include"
+    IMPORTED_LOCATION "${MPIR_LIBRARIES_REL}"
+    INTERFACE_INCLUDE_DIRECTORIES "${MPIR_INCLUDE_DIR}"
 )
